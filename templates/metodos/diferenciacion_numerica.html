@@ -1,0 +1,128 @@
+{% extends "base.html" %} 
+
+{% block titulo %}
+  <h2>Diferenciación numérica</h2>
+{% endblock titulo %} 
+
+{% block formulario %}
+<form class="formulario" method="post">
+  <fieldset>
+    <legend>Ingrese los siguientes datos</legend>
+    <div class="contenedor_campos">
+      <div class="campo c1">
+        <label for="funcion">Función</label>
+        <input
+          class="input-text"
+          type="text"
+          id="funcion"
+          name="funcion"
+          placeholder="Ingrese la función"
+          required
+        />
+      </div>
+
+      <div class="campo">
+        <label for="a">Valor de X</label>
+        <input
+          class="input-text"
+          type="number"
+          step="any"
+          id="x"
+          name="x"
+          placeholder="Ingrese el valor de X"
+          required
+        />
+      </div>
+
+      <div class="campo">
+        <label for="">Tamaño de paso (h)</label>
+        <input
+          class="input-text"
+          type="number"
+          step="any"
+          id="h"
+          name="h"
+          placeholder="Ingrese el valor de h"
+          required
+        />
+      </div>
+
+      <div class="campo c1">
+        <label for="">Orden de la derivada</label>
+      </div>
+
+      <div class="campo">
+        <label for="ordenDerivada">
+          <input
+            type="radio"
+            id="primerOrden"
+            name="ordenDerivada"
+            value="primerOrden"
+            checked
+          />Primer orden</label
+        >
+      </div>
+      <div class="campo">
+        <label for="ordenDerivada"
+          ><input
+            type="radio"
+            id="segundoOrden"
+            name="ordenDerivada"
+            value="segundoOrden"
+          />
+          Segundo orden</label
+        >
+      </div>
+    </div>
+    <div class="alinear-derecha flex">
+      <input class="boton w-sm-100" type="submit" value="calcular" />
+    </div>
+  </fieldset>
+</form>
+{% endblock formulario %}
+
+{% block contenido %} 
+
+  {% if error_mensaje %}
+    <p> {{ error_mensaje }} </p>
+  {% endif %}
+
+  {% if tablaDatos %}
+    <h2>Resultados</h2>
+    <p><strong>Función:</strong> {{ funcion }} </p>
+    <p><strong>Valor verdadero:</strong> {{ valorVerdadero }} </p>
+    <h3>Diferencias divididas finitas</h3>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Hacia adelante</th>
+          <th>Hacia atrás</th>
+          <th>Centrada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% if orden == "primerOrden" %}
+            <td>f '(x)</td>
+          {% endif %}
+
+          {% if orden == "segundoOrden" %}
+            <td>f ''(x)</td>
+          {% endif %}
+
+          <td>{{ tablaDatos[0][0] }}</td>
+          <td>{{ tablaDatos[1][0] }}</td>
+          <td>{{ tablaDatos[2][0] }}</td>
+        </tr>
+        <tr>
+          <td>ε (%)</td>
+          <td>{{ tablaDatos[0][1] }}</td>
+          <td>{{ tablaDatos[1][1] }}</td>
+          <td>{{ tablaDatos[2][1] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  {% endif %}
+
+{% endblock contenido%}

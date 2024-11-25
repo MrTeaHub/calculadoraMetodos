@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block contenido %}
+
+<h2>Notación para ingresar las funciones</h2>
+<p>
+  Esta calculadora utiliza la misma notación que utiliza
+  <strong>Python</strong>. Por lo que, al ingresar una función, se debe seguir
+  la sintaxis del lenguaje de programación.
+</p>
+<p>
+  Además, la calculadora permite la entrada de funciones con las siguientes
+  caracteristicas: <br /><br />
+  Funciones <strong>trigonométricas</strong>, se permite el uso del seno, coseno
+  y tangente. <br /><br />
+  Para seno: <strong>"sin(x)"</strong> <br />
+  Para coseno: <strong>"cos(x)"</strong> <br />
+  Para tangente: <strong>"tan(x)"</strong> <br /><br />
+  Funciones <strong>exponenciales</strong> y con <strong>raiz cuadrada</strong>.
+  <br /><br />
+  Para raiz cuadrada: <strong>"sqrt(x)"</strong> <br />
+  Para exponenciales: <strong>"exp(x)"</strong>
+</p>
+
+<h3>Ejemplos</h3>
+<p>
+  x^10 - 1 ----> <strong>x**10 - 1</strong> <br /><br />
+  0.2 + 25x - 200x^2 + 675x^3 – 900x^4 + 400x^5 ---->
+  <strong>0.2 + (25*x) - (200*x**2) + (675*x**3) - (900*x**4) + (400*x**5)</strong> <br><br> e^-x - x ----> <strong>exp(-x) - x</strong> <br><br>sin(√x) - x ----> <strong>sin(sqrt(x)) - x</strong>
+</p>
+
+{% endblock contenido %}

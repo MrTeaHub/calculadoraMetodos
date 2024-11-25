@@ -1,0 +1,100 @@
+{% extends "base.html" %} 
+{% block titulo %}
+<h2>Regla del trapecio</h2>
+{% endblock titulo %} 
+
+{% block formulario %}
+<form class="formulario" method="post">
+  <fieldset>
+    <legend>Ingrese los siguientes datos</legend>
+    <div class="contenedor_campos">
+      <div class="campo c1">
+        <label for="funcion">Función</label>
+        <input
+          class="input-text"
+          type="text"
+          id="funcion"
+          name="funcion"
+          placeholder="Ingrese la función"
+          required
+        />
+      </div>
+
+      <div class="campo">
+        <label for="a">Limite inferior (a)</label>
+        <input
+          class="input-text"
+          type="number"
+          step="any"
+          id="a"
+          name="a"
+          placeholder="Ingrese el valor de a"
+          required
+        />
+      </div>
+
+      <div class="campo">
+        <label for="">Limite superior (b)</label>
+        <input
+          class="input-text"
+          type="number"
+          step="any"
+          id="b"
+          name="b"
+          placeholder="Ingrese el valor de b"
+          required
+        />
+      </div>
+
+      <div class="campo c1">
+        <label for="subIntervalos">Número de subintervalos</label>
+        <input
+          class="input-text"
+          type="number"
+          id="subIntervalos"
+          name="subIntervalos"
+          placeholder="Ingrese el número de subintervalos"
+          required
+        />
+      </div>
+    </div>
+    <div class="alinear-derecha flex">
+      <input class="boton w-sm-100" type="submit" value="calcular" />
+    </div>
+  </fieldset>
+</form>
+{% endblock formulario %}
+
+{% block contenido %} 
+
+  {% if error_mensaje %}
+    <p> {{ error_mensaje }} </p>
+  {% endif %}
+
+  {% if integral %}
+    <h2>Resultados</h2>
+    <p><strong>Función:</strong> {{ funcion }} </p>
+    <p><strong>Valor verdadero:</strong> {{ valorVerdadero }} </p>
+    <h3>Regla del trapecio de aplicación múltiple</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>n</th>
+          <th>h</th>
+          <th>I</th>
+          <th>ε (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>{{ n }}</td>
+            <td>{{ h }}</td>
+            <td>{{ integral }}</td>
+            <td>{{ error }}</td>
+          </tr>
+      </tbody>
+    </table>
+    <p><strong>Integral definida de {{ a }} hasta {{ b }}:</strong> {{ integral }}</p>
+  {% endif %}
+
+{% endblock contenido%}

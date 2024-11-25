@@ -1,0 +1,88 @@
+{% extends "base.html" %} 
+{% block titulo %}
+<h2>Newton Rapshon</h2>
+{% endblock titulo %} 
+
+{% block formulario %}
+  <form class="formulario" method="POST">
+  <fieldset>
+    <legend>Ingrese los siguientes datos</legend>
+    <div class="contenedor_campos">
+      <div class="campo c1">
+        <label for="funcion">Función</label>
+        <input
+          class="input-text"
+          type="text"
+          id="funcion"
+          name="funcion"
+          placeholder="Ingrese la función"
+          required
+        />
+      </div>
+      <div class="campo">
+        <label for="xi">Valor inicial (Xi)</label>
+        <input
+          class="input-text"
+          type="number"
+          step="any"
+          id="xi"
+          name="xi"
+          placeholder="Ingrese el valor de Xi"
+          required
+        />
+      </div>
+      <div class="campo">
+        <label for="errorPorcentual">Error (E%)</label>
+        <input
+          class="input-text"
+          type="number"
+          step="any"
+          id="errorPorcentual"
+          name="errorPorcentual"
+          placeholder="Ingrese E%"
+          required
+        />
+      </div>
+    </div>
+    <div class="alinear-derecha flex">
+      <input class="boton w-sm-100" type="submit" value="calcular" />
+    </div>
+  </fieldset>
+  </form>
+{% endblock formulario %} 
+
+{% block contenido %} 
+  {% if error_mensaje %}
+    <p> {{ error_mensaje }} </p>
+  {% endif %}
+
+  {% if grafica %}
+    <h2>Gráfica generada</h2>
+    <img src="data:image/png;base64,{{ grafica }}" alt="Gráfica de la función" />
+  {% endif %} 
+
+  {% if tablaDatos %}
+    <h2>Resultados</h2>
+    <p><strong>Función:</strong> {{ funcion }} </p>
+    <h3>Tabla de Iteraciones</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>i</th>
+          <th>Xi</th>
+          <th>ε (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i, xi, error in tablaDatos %}
+          <tr>
+            <td>{{ i }}</td>
+            <td>{{ xi }}</td>
+            <td>{{ error }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p><strong>x:</strong> {{ raiz }}</p>
+  {% endif %}
+{% endblock contenido%}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calculadora Métodos Numericos</title>
+        <!--Normalize-->
+        <link rel="preload" href="{{ url_for('static', filename='css/normalize.css') }}" as="style"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}" />
+        <!--Google fonts-->
+        <!--Hoja de estilos-->
+        <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}" as="style" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+        <!-- favicon -->
+         <link rel="icon" href="{{ url_for('static', filename='favicon/icon.ico') }}">
+        <!--Scripts-->
+    </head>
+    <body>
+        <header>
+            <a href="{{ url_for("index") }}"><h1>Calculadora Métodos Numericos</h1></a>
+            
+        </header>
+        <div class="nav_background">
+            <nav class="navegacion_principal contenedor">
+                <a href="{{ url_for("newton_raphson") }}">Método abierto: Newton-Raphson</a>
+                <a href="{{ url_for("falsa_posicion") }}">Método cerrado: Falsa posición</a>
+                <a href="{{ url_for("regla_trapecio") }}">Método de integracion: Regla del trapecio</a>
+                <a href="{{ url_for("diferenciacion_numerica") }}">Método de derivación: Diferenciación numérica </a>
+            </nav>
+        </div>
+
+        <main class="contenedor sombra">
+            {% block titulo %}{% endblock titulo %}
+
+            {% block formulario %}
+            {% endblock formulario %}
+
+            {% block contenido %}
+            {% endblock contenido %}
+        </main>
+    </body>
+</html>
